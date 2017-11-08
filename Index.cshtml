@@ -1,0 +1,136 @@
+﻿@using DBPortal.Models;
+@model List<SalesOrderDetail>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- BEGIN PAGE CONTENT-->
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+        <div class="portlet box blue">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-edit"></i>Inventory
+                </div>
+                @*<div class="tools">
+                        <a href="javascript:;" class="collapse">
+                        </a>
+                        <a href="#portlet-config" data-toggle="modal" class="config">
+                        </a>
+                        <a href="javascript:;" class="reload">
+                        </a>
+                        <a href="javascript:;" class="remove">
+                        </a>
+                    </div>*@
+            </div>
+            <div class="portlet-body">
+                <div class="table-toolbar">
+                    <div class="row">
+                        <div class="col-md-6">
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="btn-group pull-right">
+                                <button class="btn dropdown-toggle" data-toggle="dropdown">
+                                    Tools <i class="fa fa-angle-down"></i>
+                                </button>
+                                <ul class="dropdown-menu pull-right">
+                                    <li>
+                                        <a href="javascript:;">
+                                            Print
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">
+                                            Save as PDF
+                                        </a>
+                                    </li>
+                                    <li>
+                                        @*<a tabindex="0" class="dt-button buttons-excel " aria-controls="TableId" href="#"><span><span title="Download Data in Excel" class="glyphicon glyphicon-download-alt" data-toggle="tooltip"></span></span></a>*@
+                                        @*<a href="javascript:document.getElementById('excelHtml5')"><i class="glyphicon glyphicon-download-alt "></i> Export to Excel</a>*@
+                                        @*<input type="button" id="btnExport" value="Export to Excel" />*@
+                                        <a href="javascript:;">
+                                            Export to excel
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="sample_1_wrapper" class="dataTables_wrapper no-footer">
+
+                    <div class="table-scrollable">
+                        <table class="table table-striped table-bordered table-hover" id="TableId">
+                            <thead>
+                                <tr>
+                                    <th>Sr</th>
+                                    <th>OrderTrackNumber</th>
+                                    <th>Quantity</th>
+                                    <th>ProductName</th>
+                                    <th>SpecialOffer</th>
+                                    <th>UnitPrice</th>
+                                    <th>UnitPriceDiscount</th>
+                                    @*<th>OSVesion</th>
+                                        <th>ServeType</th>
+                                        <th>IsActive</th>
+                                        <th>ServerEnv</th>
+                                        <th>Description</th>
+                                        <th>CommonName</th>
+                                        <th>CMDB_Location</th>*@
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var inv in Model)
+            {
+                                    <tr>
+                                        <td>@inv.Sr</td>
+                                        <td>@inv.OrderTrackNumber</td>
+                                        <td>@inv.Quantity</td>
+                                        <td>@inv.ProductName</td>
+                                        <td>@inv.SpecialOffer</td>
+                                        <td>@inv.UnitPrice</td>
+                                        <td>@inv.UnitPriceDiscount</td>
+                                        @*<td>@inv.OSVesion</td>
+                                            <td>@inv.ServeType</td>
+                                            <td>@inv.IsActive</td>
+                                            <td>@inv.ServerEnv</td>
+                                            <td>@inv.Description</td>
+                                            <td>@inv.CommonName</td>
+                                            <td>@inv.CMDB_Location</td>*@
+                                    </tr>
+                                }
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END EXAMPLE TABLE PORTLET-->
+    </div>
+</div>
+<!-- END PAGE CONTENT -->
+<script>
+    $(document).ready(function () {
+        $('#TableId').DataTable(
+
+            {
+                "dom": 'Blfrtip',
+                "buttons": [
+
+              { "extend": 'excelHtml5', "text": '<span class="glyphicon glyphicon-download-alt"  data-toggle="tooltip" title="Download Data in Excel"></span>', "className":' pull-right' }
+
+                ],
+
+
+            }
+            );
+    });
+   
+    //$("#btnExport").click(function (e) {
+    //    window.open('data:application/vnd.ms-excel,' + $('#TableId').html());
+    //    e.preventDefault();
+    //});
+</script>
